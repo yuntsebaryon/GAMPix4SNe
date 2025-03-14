@@ -9,8 +9,8 @@ def writeCSV( infileName, outfileName, treeName, runNo, subrunNo, isSignal):
     tree = infile.Get( treeName )
 
     with open( outfileName, 'w') as f:
-        if isSignal:
-            print('run/I,subrun/I,event/I,isSignal/I,pdgCode/I,trackID/I,motherID/I,startE/D,dE/D,startX/D,startY/D,startZ/D,startT/D,endX/D,endY/D,endZ/D,endT/D', file = f)
+        # if isSignal:
+        #     print('run,subrun,event,isSignal,pdgCode,trackID,motherID,startE,dE,startX,startY,startZ,startT,endX,endY,endZ,endT', file = f)
         for Part, Evt in enumerate( tree ):
             print( f'{runNo},{subrunNo},{Evt.event},{isSignal},{Evt.pdg},{Evt.trackID},{Evt.motherID},{Evt.startE},{Evt.dE},{Evt.startX},{Evt.startY},{Evt.startZ},{Evt.startT},{Evt.endX},{Evt.endY},{Evt.endZ},{Evt.endT}', file = f)
 
@@ -29,27 +29,28 @@ if __name__ == "__main__":
 
     sigDir = '/Users/yuntse/data/lartpc_rd/gampix/sn/garching/nh/g4'
     radDir = '/Users/yuntse/data/lartpc_rd/gampix/radiologicals/g4'
-    outDir = '/Users/yuntse/data/lartpc_rd/gampix/mixed/garching/nh/g4'
+    outDir = '/Users/yuntse/data/lartpc_rd/gampix/mixed/garching/nh/temp'
     runNo = 20000047
-    subrunRange = 1
+    nSubruns = 2
 
-    xLoc = 0
+    x = [ 315, 205, 105, 0, -105, -205, -305 ]
     treeName = 'edep'
-    sigName = f'nueArCC_garching_nh_mxDir_x{xLoc}_g4'
+    sigName = f'nueArCC_garching_nh_mxDir'
     radName = 'fullgeoanatruth-vd-reduced_g4'
-    outName = f'rad_nueArCC_garching_nh_mxDir_x{xLoc}_g4'
+    outName = f'rad_nueArCC_garching_nh_mxDir'
 
-    for iSubrun in range( subrunRange ):
+    for iSubrun in range( nSubruns ):
     
-        # SN neutrino signal file
-        sigInfile = f'{sigDir}/{sigName}_{iSubrun:04d}.root'
-        sigOutfile = f'{sigDir}/{sigName}_{iSubrun:04d}.csv'
-        writeCSV( sigInfile, sigOutfile, treeName, runNo, iSubrun, 1)
-
         # Radiological background file
         radInfile = f'{radDir}/{radName}_{iSubrun:04d}.root'
         radOutfile = f'{radDir}/{radName}_{iSubrun:04d}.csv'
         writeCSV( radInfile, radOutfile, treeName, runNo, iSubrun, 0)
+        
+        for ix in x:
+            # SN neutrino signal file
+            sigInfile = f'{sigDir}/{sigName}_xpos{ix:03d}cm_g4_{iSubrun:04d}.root'
+            sigOutfile = f'{sigDir}/{sigName}_xpos{ix:03d}cm_g4_{iSubrun:04d}.csv'
+            writeCSV( sigInfile, sigOutfile, treeName, runNo, iSubrun, 1)
 
-        outfile = f'{outDir}/{outName}_{iSubrun:04d}.csv'
-        sortEvents( sigOutfile, radOutfile, outfile )
+            outfile = f'{outDir}/{outName}_xpos{ix:03d}cm_g4_{iSubrun:04d}.csv'
+            sortEvents( sigOutfile, radOutfile, outfile )
