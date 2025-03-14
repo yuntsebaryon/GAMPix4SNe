@@ -4,9 +4,9 @@ import os
 
 if __name__ == "__main__":
 
-    dir = '/Users/yuntse/data/lartpc_rd/gampix/sn/garching/nh'
+    dir = '/Users/yuntse/data/lartpc_rd/gampix/sn/garching/nh/marley'
     name = 'nueArCC_garching_nh_mxDir'
-    nFiles = 5
+    nFiles = 56
 
     for iFile in range( nFiles ):
         infile = f'{dir}/{name}_{iFile:02d}.ascii'

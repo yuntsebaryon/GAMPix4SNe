@@ -4,10 +4,10 @@ import os
 
 if __name__ == "__main__":
 
-    outDir = '/Users/yuntse/data/lartpc_rd/gampix/sn/garching/nh'
+    outDir = '/Users/yuntse/data/lartpc_rd/gampix/sn/garching/nh/marley'
     jsonDir = f'{outDir}/json'
-    nFiles = 5
-    nEvtsPerFile = 1000
+    nFiles = 56
+    nEvtsPerFile = 500
     fileName = 'nueArCC_garching_nh_mxDir'
 
     for iFile in range( nFiles ):
