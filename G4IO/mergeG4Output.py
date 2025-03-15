@@ -20,7 +20,11 @@ def writeCSV( infileName, outfileName, treeName, runNo, subrunNo, isSignal):
 def sortEvents( signalF, radF, outF ):
 
     print( f'Sorting and creating {outF}...')
-    cmd = f'sort -t , -k 3,3 -s {signalF} {radF} > {outF}'
+
+    with open( outF, 'w' ) as f:
+        print('run,subrun,event,isSignal,pdgCode,trackID,motherID,startE,dE,startX,startY,startZ,startT,endX,endY,endZ,endT', file = f)
+
+    cmd = f'sort -t , -k 3,3 -s {signalF} {radF} >> {outF}'
     os.system( cmd )
     return
 # def sortEvents
@@ -29,9 +33,9 @@ if __name__ == "__main__":
 
     sigDir = '/Users/yuntse/data/lartpc_rd/gampix/sn/garching/nh/g4'
     radDir = '/Users/yuntse/data/lartpc_rd/gampix/radiologicals/g4'
-    outDir = '/Users/yuntse/data/lartpc_rd/gampix/mixed/garching/nh/temp'
+    outDir = '/Users/yuntse/data/lartpc_rd/gampix/mixed/garching/nh/g4'
     runNo = 20000047
-    nSubruns = 2
+    nSubruns = 56
 
     x = [ 315, 205, 105, 0, -105, -205, -305 ]
     treeName = 'edep'
@@ -39,7 +43,7 @@ if __name__ == "__main__":
     radName = 'fullgeoanatruth-vd-reduced_g4'
     outName = f'rad_nueArCC_garching_nh_mxDir'
 
-    for iSubrun in range( nSubruns ):
+    for iSubrun in range( 2, nSubruns ):
     
         # Radiological background file
         radInfile = f'{radDir}/{radName}_{iSubrun:04d}.root'
