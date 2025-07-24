@@ -1,0 +1,31 @@
+# /edep/phys/ionizationModel 0
+/edep/gdml/read /Users/yuntse/work/lartpc_rd/GAMPix4SNe/MCProd/g4/gdml/InfiniteLAr.gdml
+
+/edep/db/set/neutronThreshold 0 MeV
+/edep/db/set/lengthThreshold 0 mm
+/edep/db/set/gammaThreshold 0 MeV
+/edep/db/open /Users/yuntse/data/lartpc_rd/gampix/radiologicals/g4/fullgeoanatruth-vd-reduced_g4_00_test.root
+# /edep/db/set/storeROOT true
+
+/edep/hitSagitta LArVol 1.0 mm
+/edep/hitLength LArVol 1.0 mm
+/edep/hitSeparation LArVol -1 mm
+
+/edep/update
+
+/generator/kinematics/set hepevt
+
+/generator/kinematics/hepevt/input /Users/yuntse/data/lartpc_rd/gampix/radiologicals/gen/fullgeoanatruth-vd-reduced_00.hepevt
+/generator/kinematics/hepevt/flavor marley
+
+## Distribute the events based on the vertex in the rooTracker file.
+/generator/position/set free
+
+## Distribute the event times based onn the time in the rooTracker file.
+/generator/time/set free
+
+## Make sure EDEPSIM updates the kinematics generator.
+/generator/add
+
+# /run/beamOn 2092315
+/run/beamOn 1
