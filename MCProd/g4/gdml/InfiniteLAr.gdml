@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ASCII"?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+
+  <define>
+    <position name="origin" unit="cm" x="0.0" y="0.0" z="0.0"/>
+    <rotation name="identity"/>
+  </define>
+  <materials>
+    <element Z="18" formula="Ar" name="argon">
+      <atom value="39.948"/>
+    </element>
+    <material formula="" name="LAr">
+      <D value="1.4"/>
+      <composite n="1" ref="argon"/>
+    </material>
+  </materials>
+  <solids>
+    <box name="LArBox" x="1000.0" y="1000.0" z="1000.0" lunit="m"/>
+    <box name="WorldBox" x="2000.0" y="2000.0" z="2000.0" lunit="m"/>
+  </solids>
+  <structure>
+    <volume name="LArVol">
+      <materialref ref="LAr"/>
+      <solidref ref="LArBox"/>
+      <auxiliary auxtype="SensDet" auxvalue="LArVol"/>
+      <auxiliary auxtype="EField" auxvalue="(500.0 V/cm, 0.0 V/cm, 0.0 V/cm)"/> 
+    </volume>
+    <volume name="World">
+      <materialref ref="G4_Galactic"/>
+      <solidref ref="WorldBox"/>
+      <physvol>
+        <volumeref ref="LArVol"/>
+        <positionref ref="origin"/>
+        <rotationref ref="identity"/>
+      </physvol>
+    </volume>
+  </structure>
+  <setup name="Default" version="0">
+    <world ref="World"/>
+  </setup>
+</gdml>
