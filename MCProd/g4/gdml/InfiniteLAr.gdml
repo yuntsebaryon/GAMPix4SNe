@@ -7,11 +7,13 @@
   </define>
   <materials>
     <element Z="18" formula="Ar" name="argon">
-      <atom value="39.948"/>
+      <atom value="39.948" unit="g/mole"/>
     </element>
     <material formula="" name="LAr">
-      <D value="1.4"/>
-      <composite n="1" ref="argon"/>
+      <D value="1.390" unit="g/cm3"/>
+      <state>liquid</state>
+      <T unit="K" value="89.0"/>
+      <composite n="1.0" ref="argon"/>
     </material>
   </materials>
   <solids>
