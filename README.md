@@ -29,7 +29,6 @@ GAMPix for Supernova Neutrino Measurements in DUNE
    python dumpTree.py <input.root> <output.h5> True
 ```
 
-
 ## Install the packages
 
 ### Compile GEANT4 10.7.4
