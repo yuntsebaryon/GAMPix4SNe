@@ -9,27 +9,27 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    sample = 'nurad'
-    prefix = 'nueArCC_garching_nh_mxpypzDir-rad-vd-reduced'
+    sample = 'radiologicals'
+    prefix = 'fullgeoanatruth-vd-reduced'
     nFiles = 28
     nEventsPerFile = 1000
 
     gdml = '/Users/yuntse/work/lartpc_rd/GAMPix4SNe/MCProd/g4/gdml/InfiniteLAr.gdml'
     
     # executable = '/Users/yuntse/opt/edep-sim/edep-gcc-17.0.0-arm64-apple-darwin24.5.0/bin/edep-sim'
-    executable = '/Users/yuntse/opt/edep-sim-origin/edep-gcc-17.0.0-arm64-apple-darwin24.5.0/bin/edep-sim'
+    executable = '/Users/yuntse/opt/edep-sim-origin/edep-gcc-21.0.0-arm64-apple-darwin25.3.0/bin/edep-sim'
 
     inDir = f'{args.dir}/gen/{sample}'
     if not os.path.isdir( inDir ):
         raise FileNotFoundError(f"Input directory '{inDir}' does not exist")
 
     outDir = f'{args.dir}/g4/{sample}'
-    # if os.path.exists( outDir ):
-    #     raise FileExistsError(f"Output directory '{outDir}' already exists.")
-    # else:
-    #     os.makedirs( f'{outDir}/mac')
+    if os.path.exists( outDir ):
+        raise FileExistsError(f"Output directory '{outDir}' already exists.")
+    else:
+        os.makedirs( f'{outDir}/mac')
 
-    for iFile in range( 2, nFiles ):
+    for iFile in range( 0, nFiles ):
         macfile = f'{outDir}/mac/{prefix}_g4_{iFile:02d}.mac'
         infile = f'{inDir}/{prefix}_{iFile:02d}.hepevt'
         outfile = f'{outDir}/{prefix}_g4_{iFile:02d}.root'
@@ -37,6 +37,7 @@ if __name__ == "__main__":
         with open( macfile, 'w') as f:
             f.write(
 f'''
+/edep/phys/ionizationModel 0
 /edep/gdml/read {gdml}
 
 /edep/db/set/neutronThreshold 0 MeV
