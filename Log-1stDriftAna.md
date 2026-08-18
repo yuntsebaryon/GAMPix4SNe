@@ -16,12 +16,12 @@ First drift distance analysis: Work Log
 
 ### Neural network analysis
 
-- `v0`: Bahrudin's parameters of the NN hidden layer sizes: `Analysis/driftDistanceNN0.ipynb`
-- `v0.1`: The default NN parameters: `Analysis/driftDistanceNN0.1.ipynb`
+- `v0`: Bahrudin's parameters of the NN hidden layer sizes: `Analysis/TileCluster/driftDistanceNN0.ipynb`
+- `v0.1`: The default NN parameters: `Analysis/TileCluster/driftDistanceNN0.1.ipynb`
     - Slightly better results, but not significant by eyes
-    - Without any tile readout to justify that we need/want the tiles: `Analysis/driftDistanceNN0.1_noTile.ipynb`
-- `v1`: Add one more variable in the NN inputs: `Analysis/driftDistanceNN1.ipynb`
-- `v1.1`: Add a different variable in the NN inputs: `Analysis/driftDistanceNN1.1.ipynb`
+    - Without any tile readout to justify that we need/want the tiles: `Analysis/TileCluster/driftDistanceNN0.1_noTile.ipynb`
+- `v1`: Add one more variable in the NN inputs: `Analysis/TileCluster/driftDistanceNN1.ipynb`
+- `v1.1`: Add a different variable in the NN inputs: `Analysis/TileCluster/driftDistanceNN1.1.ipynb`
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -39,6 +39,9 @@ First drift distance analysis: Work Log
 
 ### Neural network analysis
 
-- `v0.1.1`: The same as `v0.1` but using the new sample: `Analysis/driftDistanceNN0.1.1.ipynb`
-    - Without any tile readout to justify that we need/want the tiles: `Analysis/driftDistanceNN0.1.1_noTile.ipynb`
+- `v0.1.1`: The same as `v0.1` but using the new sample: `Analysis/TileCluster/driftDistanceNN0.1.1.ipynb`
+    - Without any tile readout to justify that we need/want the tiles: `Analysis/TileCluster/driftDistanceNN0.1.1_noTile.ipynb`
 
+### DUNE Collaboration Meeting Presentation: 2026.5.20
+
+- Use the `v0.1.1` results
